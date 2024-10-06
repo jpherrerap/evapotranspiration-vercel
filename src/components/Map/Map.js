@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, FeatureGroup, Polygon, useMapEvents, ImageOverlay } from 'react-leaflet';
+import { MapContainer, TileLayer, FeatureGroup, Polygon, useMapEvents, ImageOverlay, LayersControl } from 'react-leaflet';
 import { EditControl } from 'react-leaflet-draw';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
@@ -45,8 +45,9 @@ function NASAOverlay({ polygon }) {
       const [eastMerc, northMerc] = proj4('EPSG:4326', 'EPSG:3857', [east, north]);
 
       // Construct WMTS URL
-      const baseUrl = 'https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/MODIS_Terra_CorrectedReflectance_TrueColor/default/2023-01-01/GoogleMapsCompatible_Level9';
-      const url = `${baseUrl}/{z}/{y}/{x}.jpg`;
+      const baseUrl = 'https://gibs.earthdata.nasa.gov/wmts/epsg3857/best/MODIS_Terra_CorrectedReflectance_TrueColor/default/2024-10-05/GoogleMapsCompatible_Level9/';
+      const url = `${baseUrl}/{6}/{13}/{20}.jpg`;
+      // <RasterLayer url={tifFile} options={options} bounds={bounds} />
 
       setImageUrl(url);
       setImageBounds([[south, west], [north, east]]);
@@ -56,12 +57,7 @@ function NASAOverlay({ polygon }) {
   if (!imageUrl || !imageBounds) return null;
 
   return (
-    <ImageOverlay
-      url={imageUrl}
-      bounds={imageBounds}
-      opacity={0.5}
-      zIndex={10}
-    />
+    <ImageOverlay url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/0/0/0" bounds={imageBounds} />
   );
 }
 
@@ -87,15 +83,21 @@ export default function Map() {
   };
 
   return (
-    <MapContainer
-      center={[51.505, -0.09]}
-      zoom={13}
-      style={{ height: '100%', width: '100%' }}
-    >
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
+    <MapContainer center={[-33.4, -70.6]} zoom={13} style={{ height: '100%', width: '100%' }}>
+      <LayersControl position="topright">
+        <LayersControl.BaseLayer checked name="OpenStreetMap">
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+        </LayersControl.BaseLayer>
+        <LayersControl.BaseLayer name="Satellite">
+          <TileLayer
+            attribution='Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+            url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+          />
+        </LayersControl.BaseLayer>
+      </LayersControl>
       <FeatureGroup>
         <EditControl
           position="topright"
@@ -109,9 +111,9 @@ export default function Map() {
           }}
         />
         {polygon.length > 0 && <Polygon positions={polygon} />}
+        {/* <NASAOverlay polygon={polygon} /> */}
       </FeatureGroup>
       <LocationMarker />
-      <NASAOverlay polygon={polygon} />
     </MapContainer>
   );
 }
