@@ -27,15 +27,12 @@ export default function Home() {
   ];
 
   const data = [
-    { name: 'Ene', value: 400 },
-    { name: 'Feb', value: 300 },
-    { name: 'Mar', value: 200 },
-    { name: 'Abr', value: 278 },
-    { name: 'May', value: 189 },
-    { name: 'Jun', value: 170 },
-    { name: 'Jul', value: 189 },
-    { name: 'Sep', value: 160 },
-    { name: 'Oct', value: 189 },
+    { name: 'Ene', value: 78.25 },
+    { name: 'Feb', value: 78.25 },
+    { name: 'Mar', value: 174 },
+    { name: 'Abr', value: 362.25 },
+    { name: 'May', value: 362.25 },
+    { name: 'Jun', value: 142 }
   ];
 
   const handleSelectChange = (event) => {
@@ -51,7 +48,7 @@ export default function Home() {
       </Head>
       <Section>
         <Container>
-          <h2 className={styles.title, ""}>
+          <h2 className={styles.title}>
             ¡Buenas tardes, Juan!
           </h2>
           <div className={styles.content}>
@@ -70,6 +67,9 @@ export default function Home() {
                 />
                 {selectedOption && (
                   <div style={{height: "80%"}}>
+                    <div className={styles.description}>
+                    💧 Agua perdida por ET (mm/m^2)
+                    </div>
                     <BarChartWithNoSSR data={data} />
                   </div>
                 )}
