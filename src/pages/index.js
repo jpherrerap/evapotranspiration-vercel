@@ -60,13 +60,13 @@ export default function Home() {
             </div>
             <div className="row h-100">
               <div className="col-12 p-3">
-                <Dropdown 
+                <Dropdown className="h-30"
                   value={selectedOption}
                   onChange={handleSelectChange}
                   options={dropdownOptions}
                 />
                 {selectedOption && (
-                  <div style={{height: "80%"}}>
+                  <div className='h-70' >
                     <div className={styles.description}>
                     💧 Agua perdida por ET (mm/m^2)
                     </div>
