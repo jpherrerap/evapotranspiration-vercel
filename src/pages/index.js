@@ -42,8 +42,8 @@ export default function Home() {
   return (
     <Layout>
       <Head>
-        <title>AgroSmart</title>
-        <meta name="description" content="Create mapping apps with AgroSmart" />
+        <title>LABKENCE</title>
+        <meta name="description" content="Create mapping apps with LABKENCE" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Section>

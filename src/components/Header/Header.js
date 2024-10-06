@@ -11,13 +11,13 @@ const Header = () => {
       <Container className={styles.headerContainer}>
         <p className={styles.headerTitle}>
           <Link href="/">
-            AgroSmart
+            LABKENCE
           </Link>
         </p>
         <ul className={styles.headerLinks}>
           <li>
             <a href="https://github.com/colbyfayock/next-leaflet-starter" rel="noreferrer">
-              <FaGithub />
+              {/* <FaGithub /> */}
             </a>
           </li>
         </ul>
