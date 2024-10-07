@@ -23,7 +23,7 @@ export default function Home() {
 
   const dropdownOptions = [
     { value: 'option1', label: 'Alfalfa' },
-    { value: 'option2', label: 'Tomate' },
+    { value: 'option2', label: 'Tomato' },
   ];
 
   const data = [
@@ -49,10 +49,10 @@ export default function Home() {
       <Section>
         <Container>
           <h2 className={styles.title}>
-            ¡Buenas tardes, Juan!
+            ¡Good day, Juan!
           </h2>
           <div className={styles.content}>
-            🌻 Estamos a inicios de primavera
+            🌻 It's the beginning of spring
           </div>
           <div className="container-fluid vh-100 d-flex flex-column bg-neutral-1b">
             <div className="col-12 h-50">
@@ -68,7 +68,7 @@ export default function Home() {
                 {selectedOption && (
                   <div className='h-70' >
                     <div className={styles.description}>
-                    💧 Agua perdida por ET (mm/m^2)
+                    💧 Water lost (ET)  (mm/m^2)
                     </div>
                     <BarChartWithNoSSR data={data} />
                   </div>

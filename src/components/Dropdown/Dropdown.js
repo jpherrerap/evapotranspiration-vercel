@@ -7,9 +7,9 @@ const Dropdown = ({ value, onChange, options }) => {
         className="form-select"
         value={value} 
         onChange={onChange}
-        aria-label="Selecciona tu cultivo"
+        aria-label="Select"
       >
-        <option value="">Selecciona tu cultivo</option>
+        <option value="">Select crop</option>
         {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}

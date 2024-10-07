@@ -1,6 +1,6 @@
-# 🍃 AgroSmart
+# 🍃 LABKENCE
 
-Jumpstart your new Next.js mapping project with Leaflet!
+We present Labkence, a disruptive platform that utilizes NASA’s satellite data at the service of smallholder farmers, specially in Chile. This way, Labkence will empower them to take critical water-related decisions informed with real data. Our platform not only delivers key metrics to farmers but also translates this data into simple, manageable insights tailored to general information about the farmer's land and resources. 
 
 ## ⚡ Quick Deploy
 [![Deploy with Vercel Now](https://zeit.co/button)](https://vercel.com/import/project?template=https://github.com/colbyfayock/next-leaflet-starter) [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/colbyfayock/next-leaflet-starter)
@@ -13,12 +13,8 @@ Jumpstart your new Next.js mapping project with Leaflet!
 
 ## 🚀 Getting Started
 
-### Requirements
 
-### Quick Start
 
-```
-npx create-next-app -e https://github.com/colbyfayock/next-leaflet-starter
 ```
 
 ### Running the Project

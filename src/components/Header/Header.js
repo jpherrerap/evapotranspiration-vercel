@@ -14,13 +14,6 @@ const Header = () => {
             LABKENCE
           </Link>
         </p>
-        <ul className={styles.headerLinks}>
-          <li>
-            <a href="https://github.com/colbyfayock/next-leaflet-starter" rel="noreferrer">
-              {/* <FaGithub /> */}
-            </a>
-          </li>
-        </ul>
       </Container>
     </header>
   );

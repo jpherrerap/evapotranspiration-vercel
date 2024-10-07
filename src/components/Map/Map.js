@@ -61,6 +61,47 @@ function NASAOverlay({ polygon }) {
   );
 }
 
+function ETOverlay({ polygon }) {
+  const [imageUrl, setImageUrl] = useState(null);
+  const [imageBounds, setImageBounds] = useState(null);
+
+  useEffect(() => {
+    if (polygon.length > 0) {
+      const bounds = L.latLngBounds(polygon);
+      const [west, south, east, north] = [
+        bounds.getWest(),
+        bounds.getSouth(),
+        bounds.getEast(),
+        bounds.getNorth()
+      ];
+
+      // proj4.defs('EPSG:4326', '+proj=longlat +datum=WGS84 +no_defs');
+      // proj4.defs('EPSG:3857', '+proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +wktext +no_defs');
+
+      // // Convert coordinates
+      // const [westMerc, southMerc] = proj4('EPSG:4326', 'EPSG:3857', [west, south]);
+      // const [eastMerc, northMerc] = proj4('EPSG:4326', 'EPSG:3857', [east, north]);
+
+      // Construct WMTS URL
+      const baseUrl = 'http://127.0.0.1:8000/get-asd/';
+      // const url = `${baseUrl}/{6}/{13}/{20}.jpg`;
+      const url = baseUrl
+
+      // <RasterLayer url={tifFile} options={options} bounds={bounds} />
+
+      setImageUrl(url);
+      setImageBounds([[-70.65, -33.61], [-70.63, -33.59]]);
+      //bound = [[-70.63, -33.59], [-70.65, -33.61]]
+    }
+  }, [polygon]);
+
+  if (!imageUrl || !imageBounds) return null;
+
+  return (
+    <ImageOverlay url="http://127.0.0.1:8000/get-asd/" bounds={imageBounds} />
+  );
+}
+
 export default function Map() {
   const [polygon, setPolygon] = useState([]);
 
@@ -111,7 +152,7 @@ export default function Map() {
           }}
         />
         {polygon.length > 0 && <Polygon positions={polygon} />}
-        {/* <NASAOverlay polygon={polygon} /> */}
+        <ETOverlay polygon={polygon} />
       </FeatureGroup>
       <LocationMarker />
     </MapContainer>
